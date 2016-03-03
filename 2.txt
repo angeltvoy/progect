@@ -1,0 +1,9 @@
+1) 
+select decode(grouping(iddepartment),0,to_char(iddepartment),'¬—≈√Œ: ') "ŒÚ‰ÂÎ", count(*) from employee_list 
+  where idemployeee not in(select idemployeee from employee_list where idemployeee in(select code_par from employee_list)) 
+  and iddepartment in(select iddepartment from position_list)  group by rollup(iddepartment);
+SELECT   LPAD('.',2*(LEVEL-1),'.' )||lastname nameemployee, iddepartment
+  FROM   employee_list   START  WITH  idposition = 33   CONNECT BY   PRIOR   idemployeee = code_par;
+2)
+select dat, coalesce(val, lag(val) over (order by dat)) MAX_VAL from d_v;
+3)
